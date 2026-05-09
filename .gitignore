@@ -1,4 +1,5 @@
 # Ignora as classes compiladas
 *.class
+
 # Tira o teste da pasta codigo
 Codigos/gerar_testes.sh 
