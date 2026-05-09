@@ -1,0 +1,15 @@
+arquivo,tipo,vertices,distancia,arestas,tempo_ms
+entrada.txt,outro,0,9,5,3.147064
+entrada_tiebreak.txt,outro,0,10,1,3.108511
+teste_denso_10.txt,denso,10,7,3,3.154119
+teste_denso_100.txt,denso,100,1,1,5.279652
+teste_denso_200.txt,denso,200,1,1,8.190153
+teste_denso_300.txt,denso,300,2,2,12.346588
+teste_denso_50.txt,denso,50,3,2,4.214753
+teste_denso_500.txt,denso,500,2,1,14.773063
+teste_sparse_10.txt,esparso,10,10,4,3.014565
+teste_sparse_100.txt,esparso,100,31,6,3.741074
+teste_sparse_1000.txt,esparso,1000,78,16,6.099464
+teste_sparse_10000.txt,esparso,10000,53,17,16.262187
+teste_sparse_50.txt,esparso,50,43,7,3.398423
+teste_sparse_500.txt,esparso,500,50,9,4.78166

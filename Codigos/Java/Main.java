@@ -1,4 +1,4 @@
-package Codigos;
+package Codigos.Java;
 
 import java.util.*;
 import java.io.*;

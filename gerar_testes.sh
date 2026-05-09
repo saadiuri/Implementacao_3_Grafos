@@ -3,6 +3,6 @@
 for arquivo in Testes/*.txt
 do
     echo "Executando $arquivo"
-    java Codigos.Main $arquivo
+    java -cp . Codigos.Java.Main $arquivo
     echo ""
 done
