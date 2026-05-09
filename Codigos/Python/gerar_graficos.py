@@ -7,9 +7,7 @@ import re
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# =====================================================
 # PASTAS
-# =====================================================
 
 PASTA_TESTES = "Testes"
 PASTA_RESULTADOS = "Resultados"
@@ -17,17 +15,13 @@ PASTA_RESULTADOS = "Resultados"
 # Cria a pasta Resultados automaticamente
 os.makedirs(PASTA_RESULTADOS, exist_ok=True)
 
-# =====================================================
 # LISTA DE RESULTADOS
-# =====================================================
 
 resultados = []
 
 arquivos = sorted(os.listdir(PASTA_TESTES))
 
-# =====================================================
 # EXECUÇÃO DOS TESTES
-# =====================================================
 
 for arquivo in arquivos:
 
@@ -38,9 +32,9 @@ for arquivo in arquivos:
 
     print(f"\nExecutando {arquivo}")
 
-    # =====================================================
+
     # COMANDO JAVA
-    # =====================================================
+
 
     comando = f"java -cp . Codigos.Java.Main {caminho_arquivo}"
 
@@ -51,9 +45,9 @@ for arquivo in arquivos:
         text=True
     )
 
-    # =====================================================
+
     # SAÍDA
-    # =====================================================
+
 
     saida = resultado.stdout
 
@@ -64,9 +58,9 @@ for arquivo in arquivos:
         print("ERRO JAVA:")
         print(resultado.stderr)
 
-    # =====================================================
+
     # EXTRAÇÃO DOS DADOS
-    # =====================================================
+
 
     distancia = re.search(
         r"Distancia \(comprimento\): (\d+)",
@@ -83,9 +77,9 @@ for arquivo in arquivos:
         saida
     )
 
-    # =====================================================
+
     # CONVERSÃO DOS DADOS
-    # =====================================================
+
 
     if distancia:
         distancia = int(distancia.group(1))
@@ -102,9 +96,9 @@ for arquivo in arquivos:
     else:
         tempo = None
 
-    # =====================================================
+
     # IDENTIFICA O TIPO
-    # =====================================================
+
 
     tipo = "outro"
 
@@ -114,9 +108,9 @@ for arquivo in arquivos:
     elif "sparse" in arquivo:
         tipo = "esparso"
 
-    # =====================================================
+
     # EXTRAI NÚMERO DE VÉRTICES
-    # =====================================================
+
 
     tamanho = re.search(r"_(\d+)\.txt", arquivo)
 
@@ -125,9 +119,9 @@ for arquivo in arquivos:
     else:
         tamanho = 0
 
-    # =====================================================
+
     # SALVA RESULTADOS
-    # =====================================================
+
 
     resultados.append({
         "arquivo": arquivo,
@@ -138,18 +132,14 @@ for arquivo in arquivos:
         "tempo_ms": tempo
     })
 
-# =====================================================
 # DATAFRAME
-# =====================================================
 
 df = pd.DataFrame(resultados)
 
 print("\n===== TABELA COMPLETA =====")
 print(df)
 
-# =====================================================
 # EXPORTA CSV
-# =====================================================
 
 df.to_csv(
     os.path.join(PASTA_RESULTADOS, "resultados.csv"),
@@ -158,30 +148,22 @@ df.to_csv(
 
 print("\nArquivo resultados.csv gerado!")
 
-# =====================================================
 # SEPARAÇÃO DOS DADOS
-# =====================================================
 
 df_denso = df[df["tipo"] == "denso"]
 df_esparso = df[df["tipo"] == "esparso"]
 
-# =====================================================
 # REMOVE LINHAS INVÁLIDAS
-# =====================================================
 
 df_denso = df_denso.dropna(subset=["tempo_ms"])
 df_esparso = df_esparso.dropna(subset=["tempo_ms"])
 
-# =====================================================
 # ORDENAÇÃO
-# =====================================================
 
 df_denso = df_denso.sort_values(by="vertices")
 df_esparso = df_esparso.sort_values(by="vertices")
 
-# =====================================================
 # GRÁFICO - DENSOS
-# =====================================================
 
 plt.figure(figsize=(10, 6))
 
@@ -212,9 +194,7 @@ plt.close()
 
 print("grafico_densos.png gerado!")
 
-# =====================================================
 # GRÁFICO - ESPARSOS
-# =====================================================
 
 plt.figure(figsize=(10, 6))
 
@@ -245,9 +225,7 @@ plt.close()
 
 print("grafico_esparsos.png gerado!")
 
-# =====================================================
 # GRÁFICO COMPARATIVO
-# =====================================================
 
 plt.figure(figsize=(12, 6))
 
@@ -279,9 +257,7 @@ plt.close()
 
 print("grafico_comparativo.png gerado!")
 
-# =====================================================
 # TABELA COMPLETA EM IMAGEM
-# =====================================================
 
 fig, ax = plt.subplots(figsize=(14, 7))
 
@@ -309,9 +285,7 @@ plt.close()
 
 print("tabela_completa.png gerada!")
 
-# =====================================================
 # TABELA DENSOS
-# =====================================================
 
 fig, ax = plt.subplots(figsize=(12, 5))
 
@@ -339,9 +313,7 @@ plt.close()
 
 print("tabela_densos.png gerada!")
 
-# =====================================================
 # TABELA ESPARSOS
-# =====================================================
 
 fig, ax = plt.subplots(figsize=(12, 5))
 
@@ -369,9 +341,7 @@ plt.close()
 
 print("tabela_esparsos.png gerada!")
 
-# =====================================================
 # FINALIZAÇÃO
-# =====================================================
 
 print("\n===== FINALIZADO =====")
 

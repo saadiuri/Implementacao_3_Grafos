@@ -1,4 +1,5 @@
 package Codigos.Java;
+
 public class Aresta {
 
     int destino;

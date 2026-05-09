@@ -1,3 +1,4 @@
+// OBS: Tomei como referencia e adaptei o algoritmo do livro: Algoritmos - Teoria e Prática - Autor (Thomas Cormen) - CAP - 24.3 ALGORITMO DE DIJKSTRA
 package Codigos.Java;
 
 import java.util.*;
@@ -35,53 +36,44 @@ public class Main {
 
             long inicio = System.nanoTime();
 
-            VerticeInfo[] info =
-                dijkstra.encontrarCaminhoMinimo(origem);
+            VerticeInfo[] info = dijkstra.encontrarCaminhoMinimo(origem);
 
             long fim = System.nanoTime();
 
-            double tempoMs =
-                (fim - inicio) / 1_000_000.0;
+            double tempoMs = (fim - inicio) / 1_000_000.0;
 
             if (info[destino].distancia == Integer.MAX_VALUE) {
 
                 System.out.println(
-                    "Nao ha caminho entre "
-                    + origem + " e " + destino
-                );
+                        "Nao ha caminho entre "
+                                + origem + " e " + destino);
 
                 return;
             }
 
-            List<Integer> caminho =
-                dijkstra.reconstruirCaminho(info, destino);
+            List<Integer> caminho = dijkstra.reconstruirCaminho(info, destino);
 
             System.out.println(
-                "Distancia (comprimento): "
-                + info[destino].distancia
-            );
+                    "Distancia (comprimento): "
+                            + info[destino].distancia);
 
             System.out.println(
-                "Numero de arestas: "
-                + info[destino].numArestas
-            );
+                    "Numero de arestas: "
+                            + info[destino].numArestas);
 
             System.out.println(
-                "Caminho: "
-                + caminho
-            );
+                    "Caminho: "
+                            + caminho);
 
             System.out.println(
-                "Tempo: "
-                + tempoMs + " ms"
-            );
+                    "Tempo: "
+                            + tempoMs + " ms");
 
         } catch (FileNotFoundException e) {
 
             System.out.println(
-                "Arquivo nao encontrado: "
-                + args[0]
-            );
+                    "Arquivo nao encontrado: "
+                            + args[0]);
         }
     }
 }

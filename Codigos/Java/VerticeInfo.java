@@ -1,4 +1,5 @@
 package Codigos.Java;
+
 public class VerticeInfo {
     int distancia;
     int numArestas;

@@ -1,4 +1,6 @@
+// OBS: Tomei como referencia e adaptei o algoritmo do livro: Algoritmos - Teoria e Prática - Autor (Thomas Cormen) - CAP - 24.3 ALGORITMO DE DIJKSTRA
 package Codigos.Java;
+
 import java.util.*;
 
 public class Dijkstra {
@@ -19,7 +21,7 @@ public class Dijkstra {
         info[origem] = new VerticeInfo(0, 0, -1);
 
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
-        pq.offer(new int[]{origem, 0, 0});
+        pq.offer(new int[] { origem, 0, 0 });
 
         while (!pq.isEmpty()) {
             int[] current = pq.poll();
@@ -28,7 +30,7 @@ public class Dijkstra {
             int arestasU = current[2];
 
             if (distU > info[u].distancia ||
-                (distU == info[u].distancia && arestasU > info[u].numArestas)) {
+                    (distU == info[u].distancia && arestasU > info[u].numArestas)) {
                 continue;
             }
 
@@ -39,11 +41,11 @@ public class Dijkstra {
                 int novasArestas = arestasU + 1;
 
                 if (novaDist < info[v].distancia ||
-                    (novaDist == info[v].distancia && novasArestas < info[v].numArestas)) {
+                        (novaDist == info[v].distancia && novasArestas < info[v].numArestas)) {
                     info[v].distancia = novaDist;
                     info[v].numArestas = novasArestas;
                     info[v].anterior = u;
-                    pq.offer(new int[]{v, novaDist, novasArestas});
+                    pq.offer(new int[] { v, novaDist, novasArestas });
                 }
             }
         }
@@ -53,7 +55,8 @@ public class Dijkstra {
 
     public List<Integer> reconstruirCaminho(VerticeInfo[] info, int destino) {
         List<Integer> caminho = new ArrayList<>();
-        if (info[destino].distancia == Integer.MAX_VALUE) return caminho;
+        if (info[destino].distancia == Integer.MAX_VALUE)
+            return caminho;
 
         for (int v = destino; v != -1; v = info[v].anterior) {
             caminho.add(v);
