@@ -9,3 +9,6 @@ Codigos/Java/gerar_testes.sh
 
 # Tira a pasta venv
 venv/
+
+# Resultados errados
+Documentos/resultados.pdf
